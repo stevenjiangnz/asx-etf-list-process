@@ -12,15 +12,9 @@ driver.implicitly_wait(10)  # waits for 10 seconds
 # Get page source
 html_source = driver.page_source
 
-print(len(html_source))
-
-# Assuming html_source contains the HTML content fetched by Selenium
-occurrences = html_source.count('Exposure')
-
-print(f"The word 'Exposure' appears {occurrences} times in the HTML source.")
-
-
-
+with open('page_source.html', 'w', encoding='utf-8') as file:
+    file.write(html_source)
+    
 # You can now use html_source with BeautifulSoup or other tools
 # Remember to close the driver
 driver.quit()
