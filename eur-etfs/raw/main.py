@@ -21,7 +21,8 @@ def combine_csv_files(directory, output_file):
             df[col] = df[col].astype(str).apply(html.unescape)
         
         # Filter out rows where 'CURRENCY' is not 'GBP'
-        df = df[df['CURRENCY'] == 'EUR']
+        # df = df[df['CURRENCY'] == 'EUR']
+        df = df[df['EXCHANGE'].isin(['LSE', 'LSEETF'])]
         
         # Concatenate data into one DataFrame
         combined_df = pd.concat([combined_df, df])
@@ -32,6 +33,6 @@ def combine_csv_files(directory, output_file):
 
 # Update the directory path and output file name accordingly
 directory = './eur-etfs/raw/'  # Assuming the Canadian ETF files are in this directory
-output_file = 'combined_eur_etf.csv'
+output_file = 'combined_lse_etf.csv'
 
 combine_csv_files(directory, output_file)
